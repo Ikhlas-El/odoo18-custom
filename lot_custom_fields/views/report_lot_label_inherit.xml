@@ -1,0 +1,32 @@
+<odoo>
+    <template id="report_lot_label_inherit" inherit_id="stock.report_lot_label">
+        <xpath expr="." position="replace">
+            <t t-name="stock.report_lot_label">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page" style="page-break-inside: avoid;">
+                            <main style="display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 0; margin: 0;">
+                                <div style="border: 2px solid black; padding: 10mm; width: 90mm; height: 60mm; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center;">
+                                    <!-- Product name centered -->
+                                    <div style="font-size: 14px; font-weight: bold; margin-bottom: 4mm; text-align: center; word-wrap: break-word;">
+                                        <t t-esc="o.clean_product_name"/>
+                                    </div>
+
+                                    <!-- Lot name centered -->
+                                    <div style="text-align: center; margin-bottom: 4mm;">
+                                        <span t-esc="o.name" style="font-size: 12px; word-wrap: break-word;"/>
+                                    </div>
+
+                                    <!-- QR code centered -->
+                                    <div style="text-align: center; flex: 1; display: flex; align-items: center; justify-content: center;">
+                                        <div t-field="o.qr_data" t-options="{'widget': 'barcode', 'symbology': 'QR', 'width': 80, 'height': 80}" style="display: inline-block;"/>
+                                    </div>
+                                </div>
+                            </main>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </xpath>
+    </template>
+</odoo>

@@ -18,7 +18,8 @@ class StockProductionLot(models.Model):
             ('moyen', 'Moyen'),
             ('fonce', 'Foncé'),
         ],
-        string="Niveau de Torréfaction"
+        string="Niveau de Torréfaction",
+        help = "Sélectionnez le niveau de torréfaction du café."
     )
 
     maturity_time = fields.Char(

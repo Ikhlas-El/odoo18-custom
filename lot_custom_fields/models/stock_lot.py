@@ -23,7 +23,7 @@ class StockProductionLot(models.Model):
     x_screen_size = fields.Selection([
         ('excelso', 'Excelso 16'),
         ('supremo', 'Supremo')
-    ], string="Screen Size", help="Sélectionnez la taille de l'écran des grains de café")
+    ], string="Screen Size", help="Sélectionnez la taille des grains de café")
 
 
     responsable_pesee = fields.Many2one(

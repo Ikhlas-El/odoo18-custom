@@ -14,9 +14,9 @@ class StockProductionLot(models.Model):
     niveau_torrefaction = fields.Selection(
         [
             ('espresso', 'Espresso'),
-            ('clair', 'Clair'),
-            ('moyen', 'Moyen'),
-            ('fonce', 'Foncé'),
+            ('light', 'Light'),
+            ('medium', 'Medium'),
+            ('dark', 'Dark'),
         ],
         string="Niveau de Torréfaction",
         help = "Sélectionnez le niveau de torréfaction du café."

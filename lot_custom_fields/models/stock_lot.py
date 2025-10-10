@@ -2,6 +2,8 @@ from odoo import models, fields, api
 import logging
 import unicodedata
 
+from odoo.exceptions import ValidationError
+
 _logger = logging.getLogger(__name__)
 
 class StockProductionLot(models.Model):
@@ -15,22 +17,29 @@ class StockProductionLot(models.Model):
     x_origine = fields.Selection([
         ('Col', 'Colombie'),
         ('Vit', 'Vietnam'),
-        ('ETH', 'Éthiopie'),
+        ('ETH', 'Ethiopie'),
         ('Ugh', 'Ouganda'),
         ('Ind', 'Inde')
     ], string="Origine", help="Sélectionnez le pays d'origine du café")
 
     x_screen_size = fields.Selection([
-        ('excelso', 'Excelso 16'),
-        ('supremo', 'Supremo')
-    ], string="Screen Size", help="Sélectionnez la taille des grains de café")
-
-
-    responsable_pesee = fields.Many2one(
-        'res.users',
-        string='Responsable Pesée',
-        help="Sélectionnez l'utilisateur responsable de la pesée. "
-    )
+        ('10', 'Screen 10'),
+        ('12', 'Screen 12'),
+        ('13', 'Screen 13'),
+        ('14', 'Screen 14'),
+        ('15', 'Screen 15'),
+        ('16', 'Screen 16'),
+        ('17', 'Screen 17'),
+        ('18', 'Screen 18'),
+        ('19', 'Screen 19'),
+        ('20', 'Screen 20'),
+        ('aa', 'AA'),
+        ('ab', 'AB'),
+        ('pb', 'Peaberry'),
+        ('excelso', 'Excelso'),
+        ('supremo', 'Supremo'),
+        ('g1', 'Grade 1 (G1)'),
+    ], string="Screen Size", help="Sélectionnez screen size des grains de café")
 
     show_cafe_vert_fields = fields.Boolean(
         string="Afficher les champs de cafe vert",
@@ -53,10 +62,13 @@ class StockProductionLot(models.Model):
         help='Combined data for QR code generation'
     )
 
+
+
     @api.depends('product_id', 'product_id.categ_id')
     def _compute_show_cafe_vert_fields(self):
         # both category vert and tor
         category_cafe_vert = self.env.ref('coffee_maturity.cafe-vert', raise_if_not_found=False)
+        category_cafe_pese = self.env.ref('coffee_maturity.cafe-pese', raise_if_not_found=False)
         category_cafe_tor = self.env.ref('coffee_maturity.cafe-tor', raise_if_not_found=False)
 
         for lot in self:
@@ -64,7 +76,7 @@ class StockProductionLot(models.Model):
 
             if (lot.product_id and
                     lot.product_id.categ_id and
-                    lot.product_id.categ_id in (category_cafe_vert, category_cafe_tor)):
+                    lot.product_id.categ_id in (category_cafe_vert, category_cafe_pese, category_cafe_tor)):
                 lot.show_cafe_vert_fields = True
 
 
@@ -125,7 +137,9 @@ class StockProductionLot(models.Model):
                     qr_parts.append(f"ORIGINE: {origine_label}")
 
                 if lot.x_screen_size:
-                    size_label = dict(self._fields['x_screen_size'].selection).get(lot.x_screen_size, lot.x_screen_size)
+                    size_label = dict(self._fields['x_screen_size'].selection).get(
+                        lot.x_screen_size, lot.x_screen_size
+                    )
                     qr_parts.append(f"SCREEN SIZE: {size_label}")
 
                 qr_text = "\n".join(qr_parts)

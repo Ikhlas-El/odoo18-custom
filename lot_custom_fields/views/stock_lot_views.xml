@@ -18,9 +18,6 @@
                 <field name="x_screen_size"
                        string="Screen Size"
                        invisible="not show_cafe_vert_fields"/>
-                <field name="responsable_pesee"
-                       string="Responsable Pesée"
-                       invisible="not show_cafe_vert_fields"/>
             </xpath>
         </field>
     </record>

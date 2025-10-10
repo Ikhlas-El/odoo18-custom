@@ -3,19 +3,22 @@
     <record id="cafe-vert" model="product.category">
         <field name="name">01-Café Vert</field>
     </record>
+    <record id="cafe-pese" model="product.category">
+        <field name="name">02-Café Vert Pesé</field>
+    </record>
     <record id="cafe-tor" model="product.category">
-        <field name="name">02-Café Torréfié</field>
+        <field name="name">03-Café Torréfié</field>
     </record>
     <record id="cafe-mel" model="product.category">
-        <field name="name">03-Mélange</field>
+        <field name="name">04-Mélange</field>
     </record>
     <record id="cafe-pro" model="product.category">
-        <field name="name">04-Produit Final</field>
-    </record>
-    <record id="cafe-box" model="product.category">
-        <field name="name">05-Carton</field>
+        <field name="name">05-Produit Final</field>
     </record>
     <record id="cafe-pal" model="product.category">
         <field name="name">06-Palette</field>
+    </record>
+    <record id="emballage" model="product.category">
+        <field name="name">07-Emballages</field>
     </record>
 </odoo>

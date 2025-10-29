@@ -21,4 +21,10 @@
     <record id="emballage" model="product.category">
         <field name="name">07-Emballages</field>
     </record>
+    <record id="consommable" model="product.category">
+        <field name="name">08-Consommables</field>
+    </record>
+    <record id="services" model="product.category">
+        <field name="name">09-Services</field>
+    </record>
 </odoo>

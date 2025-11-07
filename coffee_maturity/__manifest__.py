@@ -1,7 +1,6 @@
 {
     'name': "Coffee Maturity Tracking",
     'version': '1.0',
-    'author': "Ikhlas",
     'depends': ['stock', 'mrp'],
     'category': 'Inventory',
     'summary': "Tracks coffee maturity duration from MO finish date",

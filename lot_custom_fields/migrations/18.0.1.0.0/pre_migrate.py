@@ -40,3 +40,5 @@ def migrate(cr, version):
         _logger.info("Pre-migration completed: x_origine data backed up to x_origine_legacy")
     else:
         _logger.info("x_origine column not found, skipping pre-migration")
+
+

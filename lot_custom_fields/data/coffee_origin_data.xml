@@ -25,7 +25,7 @@
         </record>
         <record id="origin_Mexique" model="coffee.origin">
             <field name="name">Mexique</field>
-            <field name="code">Mix</field>
+            <field name="code">Mex</field>
         </record>
 
     </data>

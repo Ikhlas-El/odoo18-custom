@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Report action bound to MRP Production -->
+    <record id="action_report_lot_label_from_mo" model="ir.actions.report">
+        <field name="name">Imprimer étiquette lot</field>
+        <field name="model">mrp.production</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">lot_custom_fields.report_lot_label_inherit</field>
+        <field name="report_file">lot_custom_fields.report_lot_label_inherit</field>
+        <field name="print_report_name">'Lot - %s' % (object.lot_producing_id.name if object.lot_producing_id else 'Sans lot')</field>
+        <field name="binding_model_id" ref="mrp.model_mrp_production"/>
+        <field name="binding_type">report</field>
+    </record>
+</odoo>
